@@ -4,3 +4,7 @@ compiled/
 .latexmk/aux
 .latexmk/aux/main.bbl
 compiled
+charcount.txt
+chars.txt
+.latexmk/aux/main.out
+.latexmk/aux/main.out
