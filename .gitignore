@@ -1,0 +1,6 @@
+.cache/
+.latexmk/
+compiled/
+.latexmk/aux
+.latexmk/aux/main.bbl
+compiled

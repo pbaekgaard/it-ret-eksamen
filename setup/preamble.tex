@@ -1,3 +1,5 @@
+\documentclass[article,10pt]{article}
+%TC:ignore
 \newcommand{\name}{\textbf{Navn:} Peter Bækgaard}
 \newcommand{\studynr}{\textbf{Studie Number:} 20212624}
 \newcommand{\fieldofstudy}{\textbf{Studie:} Software - SW9}
@@ -5,6 +7,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{algorithm}
+\usepackage{xspace}
 \usepackage{algorithmic}
 
 %\usepackage{gentium}
@@ -20,19 +23,24 @@
   font=footnotesize,% set font size to footnotesize
   labelfont=bf % bold label (e.g., Figure 3.2) font
 }
-\usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} % Format links for pdf
+\usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} %
+% Format links for pdf
 \usepackage{calc} % To reset the counter in the document after title page
 \usepackage{enumitem} % Includes lists
 
 \frenchspacing % No double spacing between sentences
 \linespread{1.2} % Set linespace
-\usepackage[a4paper, lmargin=0.1666\paperwidth, rmargin=0.1666\paperwidth, tmargin=0.1111\paperheight, bmargin=0.1111\paperheight]{geometry} %margins
+\usepackage[a4paper, lmargin=0.1666\paperwidth,
+  rmargin=0.1666\paperwidth, tmargin=0.1111\paperheight,
+bmargin=0.1111\paperheight]{geometry} %margins
 %\usepackage{parskip}
 
 \usepackage[all]{nowidow} % Tries to remove widows
-\usepackage[protrusion=true,expansion=true]{microtype} % Improves typography, load after fontpackage is selected
+\usepackage[protrusion=true,expansion=true]{microtype} % Improves
+% typography, load after fontpackage is selected
 
-\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text
+% into the template
 \usepackage{fancyhdr}
 
 \usepackage{amsmath} % For math symbols
@@ -49,10 +57,10 @@
 %-----------------------
 % Set pdf information and add title, fill in the fields
 %-----------------------
-\hypersetup{ 	
-pdfsubject = {},
-pdftitle = {IT-Ret Eksamen 2025},
-pdfauthor = {Peter Bækgaard}
+\hypersetup{
+  pdfsubject = {},
+  pdftitle = {IT-Ret Eksamen 2025},
+  pdfauthor = {Peter Bækgaard}
 }
 
 %% CLEVERREF AT THE BOTTOM
@@ -62,10 +70,55 @@ pdfauthor = {Peter Bækgaard}
 \Crefname{figure}{Figure}{Figures} % Singular and plural capitalized
 
 % Create a custom "formula" environment
-\newenvironment{formula}[1][]{\begin{equation}#1}{\end{equation}}
+\newenvironment{formula}[1][]{
+\begin{equation}#1}{
+\end{equation}}
 
 % Change "figure" to "formula" for cleveref
 \crefname{equation}{formula}{formulas}
 
 \usepackage[toc, acronym]{glossaries}
 \newacronym{vsm}{VSM}{Vector-Space Model}
+
+% Use detex + wc -m to count all visible characters including spaces and punctuation
+\immediate\write18{expr `texcount -1 -sum -merge \jobname.tex` + `texcount -1 -sum -merge -char \jobname.tex` - 1 
+    > .cache/\jobname.chars
+}
+\newcommand{\charcount}{\input{.cache/\jobname.chars}}
+
+\renewcommand{\title}[1]{%
+  \vspace*{0.2cm} % space above
+  {\centering
+    \Huge\bfseries #1\par
+    \vspace{0.5cm} % space below
+  }%
+}
+
+\pagenumbering{arabic}
+\setcounter{secnumdepth}{0}
+
+\newif\iffirstgdpr
+\firstgdprtrue
+
+\newcommand{\stech}{SmartTech Solutions ApS\xspace}
+\newcommand{\gdpr}{%
+  \iffirstgdpr
+  EUROPA-PARLAMENTETS OG RÅDETS FORORDNING (EU) 2016/679
+  af 27. april 2016 (herefter DBF) \firstgdprfalse%
+  \else
+  DBF %
+  \fi
+}
+
+\newif\iffirstdbl
+\firstdbltrue
+
+\newcommand{\dbl}{%
+  \iffirstdbl
+  Databeskyttelsesloven (herefter DBL) \firstdblfalse%
+  \else
+  DBL %
+  \fi
+}
+
+%TC:endignore
