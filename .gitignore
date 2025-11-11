@@ -9,3 +9,4 @@ chars.txt
 .latexmk/aux/main.out
 .latexmk/aux/main.out
 main.chars
+*.log
